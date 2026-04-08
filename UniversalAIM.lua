@@ -676,7 +676,7 @@ VisualsTab:CreateButton({
 
 OtherTab:CreateButton({
     Name = "InfinityYield"
-    Callback = function()
+    Callback = function(1)
         loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
     end
 })
