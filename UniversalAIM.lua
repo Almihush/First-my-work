@@ -497,7 +497,7 @@ local Window = Rayfield:CreateWindow({
 local MainTab = Window:CreateTab("AIM", nil)
 local VisualsTab = Window:CreateTab("ESP", nil)
 local MovementTab = Window:CreateTab("Movement", nil)
-local OtherTab = Window:CreateTab("Other", nil)
+
 -- Основные настройки
 MainTab:CreateToggle({
     Name = "Включить AIM",
@@ -674,12 +674,6 @@ VisualsTab:CreateButton({
     end
 })
 
-OtherTab:CreateButton({
-    Name = "InfinityYield"
-    Callback = function(1)
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-    end
-})
 -- =====================================================
 --                      ОБРАБОТЧИКИ СОБЫТИЙ
 -- =====================================================
