@@ -482,9 +482,9 @@ end
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-    Name = "AIM Assistant v3.0",
-    LoadingTitle = "AIM + Movement",
-    LoadingSubtitle = "Final",
+    Name = "AIM Almihush v3",
+    LoadingTitle = "AIM + ESP",
+    LoadingSubtitle = "Universal",
     Theme = "Dark",
     ConfigurationSaving = {
         Enabled = true,
@@ -494,13 +494,13 @@ local Window = Rayfield:CreateWindow({
     KeySystem = false,
 })
 
-local MainTab = Window:CreateTab("Основное", nil)
-local VisualsTab = Window:CreateTab("Визуалы", nil)
+local MainTab = Window:CreateTab("AIM", nil)
+local VisualsTab = Window:CreateTab("ESP", nil)
 local MovementTab = Window:CreateTab("Movement", nil)
 
 -- Основные настройки
 MainTab:CreateToggle({
-    Name = "Включить AIM ассист",
+    Name = "Включить AIM",
     CurrentValue = Settings.AIM_ASSIST_ENABLED,
     Flag = "AimEnable",
     Callback = function(Value)
@@ -545,7 +545,7 @@ MainTab:CreateSlider({
 })
 
 MainTab:CreateToggle({
-    Name = "Игнорировать стены (Wallcheck)",
+    Name = "Wall Check",
     CurrentValue = Settings.IGNORE_WALLS,
     Flag = "IgnoreWalls",
     Callback = function(Value)
@@ -554,7 +554,7 @@ MainTab:CreateToggle({
 })
 
 MainTab:CreateToggle({
-    Name = "Учитывать команды (Team Check)",
+    Name = "Team Check",
     CurrentValue = Settings.TEAM_CHECK,
     Flag = "TeamCheck",
     Callback = function(Value)
@@ -565,7 +565,7 @@ MainTab:CreateToggle({
 
 -- Визуальные настройки
 VisualsTab:CreateToggle({
-    Name = "Включить обводку врагов",
+    Name = "ESP",
     CurrentValue = Settings.HIGHLIGHT_ENABLED,
     Flag = "HighlightEnable",
     Callback = function(Value)
@@ -575,7 +575,7 @@ VisualsTab:CreateToggle({
 })
 
 VisualsTab:CreateDropdown({
-    Name = "Режим цвета обводки",
+    Name = "Mode",
     Options = {"Фиксированный цвет", "Цвет команды"},
     CurrentOption = (Settings.HIGHLIGHT_MODE == "Fixed") and "Фиксированный цвет" or "Цвет команды",
     Flag = "HighlightMode",
@@ -633,7 +633,7 @@ VisualsTab:CreateSlider({
 
 -- Movement вкладка
 MovementTab:CreateToggle({
-    Name = "Noclip (проход сквозь стены)",
+    Name = "Noclip",
     CurrentValue = Settings.NOCLIP_ENABLED,
     Flag = "NoclipToggle",
     Callback = function(Value)
@@ -643,7 +643,7 @@ MovementTab:CreateToggle({
 })
 
 MovementTab:CreateToggle({
-    Name = "Режим полёта (WASD + E/Q)",
+    Name = "FLY",
     CurrentValue = Settings.FLY_ENABLED,
     Flag = "FlyToggle",
     Callback = function(Value)
@@ -652,7 +652,7 @@ MovementTab:CreateToggle({
 })
 
 MovementTab:CreateSlider({
-    Name = "Скорость полёта",
+    Name = "Speed",
     Range = {10, 200},
     Increment = 5,
     Suffix = "u/s",
@@ -663,70 +663,8 @@ MovementTab:CreateSlider({
     end
 })
 
-MovementTab:CreateSlider({
-    Name = "Ускорение полёта (инерция)",
-    Range = {5, 50},
-    Increment = 1,
-    Suffix = "u/s²",
-    CurrentValue = Settings.FLY_ACCELERATION,
-    Flag = "FlyAcceleration",
-    Callback = function(Value)
-        Settings.FLY_ACCELERATION = Value
-    end
-})
-
-MovementTab:CreateSlider({
-    Name = "Замедление полёта (сопротивление)",
-    Range = {2, 30},
-    Increment = 1,
-    Suffix = "u/s²",
-    CurrentValue = Settings.FLY_DRAG,
-    Flag = "FlyDrag",
-    Callback = function(Value)
-        Settings.FLY_DRAG = Value
-    end
-})
-
-MovementTab:CreateSlider({
-    Name = "Скорость ходьбы",
-    Range = {16, 250},
-    Increment = 1,
-    Suffix = "w/s",
-    CurrentValue = Settings.WALK_SPEED,
-    Flag = "WalkSpeed",
-    Callback = function(Value)
-        Settings.WALK_SPEED = Value
-        local char = localPlayer.Character
-        if char then
-            local humanoid = char:FindFirstChild("Humanoid")
-            if humanoid then
-                humanoid.WalkSpeed = Value
-            end
-        end
-    end
-})
-
-MovementTab:CreateSlider({
-    Name = "Сила прыжка",
-    Range = {50, 250},
-    Increment = 5,
-    Suffix = "j/p",
-    CurrentValue = Settings.JUMP_POWER,
-    Flag = "JumpPower",
-    Callback = function(Value)
-        Settings.JUMP_POWER = Value
-        local char = localPlayer.Character
-        if char then
-            local humanoid = char:FindFirstChild("Humanoid")
-            if humanoid then
-                humanoid.JumpPower = Value
-            end
-        end
-    end
-})
-
 VisualsTab:CreateButton({
-    Name = "Клавиша AIM: ПКМ (фиксировано)",
+    Name = "Controls",
     Callback = function()
         Rayfield:Notify({
             Title = "Информация",
