@@ -497,7 +497,7 @@ local Window = Rayfield:CreateWindow({
 local MainTab = Window:CreateTab("AIM", nil)
 local VisualsTab = Window:CreateTab("ESP", nil)
 local MovementTab = Window:CreateTab("Movement", nil)
-
+local OtherTab = Window:CreateTab("Other", nil)
 -- Основные настройки
 MainTab:CreateToggle({
     Name = "Включить AIM",
@@ -667,13 +667,19 @@ VisualsTab:CreateButton({
     Name = "Controls",
     Callback = function()
         Rayfield:Notify({
-            Title = "Информация",
+            Title = "Управление",
             Content = "Клавиша активации AIM - правая кнопка мыши. Управление полётом: WASD + E/Q.",
             Duration = 4,
         })
     end
 })
 
+OtherTab:CreateButton({
+    Name = "InfinityYield"
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    end
+})
 -- =====================================================
 --                      ОБРАБОТЧИКИ СОБЫТИЙ
 -- =====================================================
