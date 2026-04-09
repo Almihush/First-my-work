@@ -574,33 +574,6 @@ VisualsTab:CreateToggle({
     end
 })
 
-VisualsTab:CreateDropdown({
-    Name = "Mode",
-    Options = {"Фиксированный цвет", "Цвет команды"},
-    CurrentOption = (Settings.HIGHLIGHT_MODE == "Fixed") and "Фиксированный цвет" or "Цвет команды",
-    Flag = "HighlightMode",
-    Callback = function(Option)
-        if Option == "Фиксированный цвет" then
-            Settings.HIGHLIGHT_MODE = "Fixed"
-        else
-            Settings.HIGHLIGHT_MODE = "TeamColor"
-        end
-        RefreshAllHighlights()
-    end
-})
-
-VisualsTab:CreateColorPicker({
-    Name = "Фиксированный цвет обводки",
-    Color = Settings.HIGHLIGHT_COLOR,
-    Flag = "HighlightColor",
-    Callback = function(Value)
-        Settings.HIGHLIGHT_COLOR = Value
-        if Settings.HIGHLIGHT_MODE == "Fixed" then
-            RefreshAllHighlights()
-        end
-    end
-})
-
 VisualsTab:CreateSlider({
     Name = "Прозрачность заливки",
     Range = {0, 1},
